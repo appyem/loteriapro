@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Users, BarChart3, Trophy, Ticket, DollarSign, Calendar, QrCode, Send, MessageCircle, Smartphone, Settings, Plus, Edit, Trash2, CheckCircle, AlertCircle, Clock, Lock } from 'lucide-react';
 
 const App = () => {
