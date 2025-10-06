@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Users, BarChart3, Trophy, Ticket, DollarSign, Calendar, QrCode, Send, MessageCircle, Smartphone, Settings, Plus, Edit, Trash2, CheckCircle, AlertCircle, Clock, Lock } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { Users, BarChart3, Trophy, Ticket, DollarSign, Calendar, QrCode, Send, MessageCircle, Smartphone, Settings, Plus, Edit, Trash2, CheckCircle, AlertCircle, Clock, Lock, User, Key, Eye, EyeOff } from 'lucide-react';
 
 const App = () => {
   const [currentView, setCurrentView] = useState('login');
@@ -10,12 +10,56 @@ const App = () => {
     { id: 1, name: 'Vendedor 1', email: 'vendedor1@example.com', commission: 10, active: true },
     { id: 2, name: 'Vendedor 2', email: 'vendedor2@example.com', commission: 15, active: true }
   ]);
+  
+  // Lista completa de loterías con horarios
   const [lotteries] = useState([
-    { id: 1, name: 'Lotería de Bogotá', time: '20:00', active: true, closed: false },
-    { id: 2, name: 'Lotería de Medellín', time: '19:30', active: true, closed: false },
-    { id: 3, name: 'Lotería del Cauca', time: '21:00', active: true, closed: false },
-    { id: 4, name: 'Lotería de Manizales', time: '18:00', active: false, closed: true }
+    // CHANCES
+    { id: 1, name: 'Antioqueñita Día', time: '10:00 AM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 2, name: 'Antioqueñita Tarde', time: '4:00 PM', days: 'Todos los días', type: 'chance', active: true, closed: false },
+    { id: 3, name: 'Dorado Mañana', time: '10:58 AM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 4, name: 'Dorado Tarde', time: '3:28 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 5, name: 'Dorado Noche', time: '10:15 PM', days: 'Sáb/Dom-Fest', type: 'chance', active: true, closed: false },
+    { id: 6, name: 'Fantástica Día', time: '12:57 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 7, name: 'Fantástica Noche', time: '8:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 8, name: 'El Samán de la Suerte', time: '1:00 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 9, name: 'Paisita Día', time: '1:00 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 10, name: 'Paisita Noche', time: '6:00 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 11, name: 'Chontico Día', time: '1:00 PM', days: 'Todos los días', type: 'chance', active: true, closed: false },
+    { id: 12, name: 'Chontico Noche', time: '7:00 PM', days: 'Lun-Vie', type: 'chance', active: true, closed: false },
+    { id: 13, name: 'Pijao de Oro', time: '2:00 PM', days: 'Lun-Vie', type: 'chance', active: true, closed: false },
+    { id: 14, name: 'Super Astro Sol', time: '2:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 15, name: 'Super Astro Luna', time: '10:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 16, name: 'Sinuano Día', time: '2:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 17, name: 'Sinuano Noche', time: '10:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 18, name: 'La Caribeña Día', time: '2:30 PM', days: 'Todos los días', type: 'chance', active: true, closed: false },
+    { id: 19, name: 'La Caribeña Noche', time: '10:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 20, name: 'Motilón Tarde', time: '3:00 PM', days: 'Todos los días', type: 'chance', active: true, closed: false },
+    { id: 21, name: 'Motilón Noche', time: '9:00 PM', days: 'Todos los días', type: 'chance', active: true, closed: false },
+    { id: 22, name: 'Cafeterito Tarde', time: '12:00 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 23, name: 'Cafeterito Noche', time: '10:00 PM', days: 'Lun-Vie', type: 'chance', active: true, closed: false },
+    { id: 24, name: 'Paisa Lotto', time: '10:00 PM', days: 'Sábado', type: 'chance', active: true, closed: false },
+    { id: 25, name: 'La Culona Día', time: '2:30 PM', days: 'Todos los días', type: 'chance', active: true, closed: false },
+    { id: 26, name: 'La Culona Noche', time: '9:30 PM', days: 'Lun-Sáb', type: 'chance', active: true, closed: false },
+    { id: 27, name: 'SuperMillonaria', time: '11:00 PM', days: 'Viernes', type: 'chance', active: true, closed: false },
+    
+    // SORTEOS TRADICIONALES
+    { id: 28, name: 'Lotería de Cundinamarca', time: '10:30 PM', days: 'Lunes', type: 'traditional', active: true, closed: false },
+    { id: 29, name: 'Lotería de Tolima', time: '11:00 PM', days: 'Lunes', type: 'traditional', active: true, closed: false },
+    { id: 30, name: 'Lotería Cruz Roja', time: '10:30 PM', days: 'Martes', type: 'traditional', active: true, closed: false },
+    { id: 31, name: 'Lotería de Huila', time: '10:30 PM', days: 'Martes', type: 'traditional', active: true, closed: false },
+    { id: 32, name: 'Lotería de Manizales', time: '10:30 PM', days: 'Miércoles', type: 'traditional', active: true, closed: false },
+    { id: 33, name: 'Lotería del Meta', time: '10:30 PM', days: 'Miércoles', type: 'traditional', active: true, closed: false },
+    { id: 34, name: 'Lotería del Valle', time: '10:30 PM', days: 'Miércoles', type: 'traditional', active: true, closed: false },
+    { id: 35, name: 'Lotería Quindío', time: '10:30 PM', days: 'Jueves', type: 'traditional', active: true, closed: false },
+    { id: 36, name: 'Lotería de Bogotá', time: '10:30 PM', days: 'Jueves', type: 'traditional', active: true, closed: false },
+    { id: 37, name: 'Lotería de Santander', time: '11:00 PM', days: 'Viernes', type: 'traditional', active: true, closed: false },
+    { id: 38, name: 'Lotería de Medellín', time: '11:00 PM', days: 'Viernes', type: 'traditional', active: true, closed: false },
+    { id: 39, name: 'Lotería Risaralda', time: '11:00 PM', days: 'Viernes', type: 'traditional', active: true, closed: false },
+    { id: 40, name: 'Lotería de Boyacá', time: '10:40 PM', days: 'Sábado', type: 'traditional', active: true, closed: false },
+    { id: 41, name: 'Lotería de Cauca', time: '9:40 PM', days: 'Sábado', type: 'traditional', active: true, closed: false },
+    { id: 42, name: 'Extra de Colombia', time: '11:00 PM', days: 'Sábado', type: 'traditional', active: true, closed: false }
   ]);
+
   const [betForm, setBetForm] = useState({
     digits: '2',
     number: '',
@@ -23,6 +67,7 @@ const App = () => {
     selectedLotteries: []
   });
   const [winningNumbers, setWinningNumbers] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
   // Mock authentication
   const handleLogin = (username, password) => {
@@ -33,6 +78,8 @@ const App = () => {
                (username === 'vendedor2' && password === 'Vendedor456!')) {
       setCurrentUser({ role: 'vendor', name: username === 'vendedor1' ? 'Vendedor 1' : 'Vendedor 2' });
       setCurrentView('vendor');
+    } else {
+      alert('Credenciales incorrectas. Por favor intente de nuevo.');
     }
   };
 
@@ -96,49 +143,100 @@ const App = () => {
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-500 via-emerald-600 to-emerald-700 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
-          <div className="text-center mb-8">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-2xl">
+          <div className="text-center mb-6">
             <div className="w-20 h-20 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
               <Trophy className="w-10 h-10 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2">LoteríaPRO</h1>
-            <p className="text-gray-600">Sistema de gestión de loterías</p>
+            <p className="text-gray-600">Sistema de gestión de loterías - Versión 2.0</p>
           </div>
           
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Usuario</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                placeholder="Ingrese su usuario"
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Usuario</label>
+                <div className="relative">
+                  <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full pl-10 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    placeholder="Ingrese su usuario"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+                <div className="relative">
+                  <Key className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-10 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent pr-12"
+                    placeholder="Ingrese su contraseña"
+                  />
+                  <button
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-600"
+                  >
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  </button>
+                </div>
+              </div>
+              
+              <button
+                onClick={() => handleLogin(username, password)}
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+              >
+                Iniciar Sesión ✨
+              </button>
             </div>
             
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                placeholder="Ingrese su contraseña"
-              />
+            <div className="bg-gray-50 rounded-xl p-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">Credenciales de Demostración</h3>
+              
+              <div className="space-y-4">
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                  <h4 className="font-bold text-blue-800 mb-2">🔐 Administrador</h4>
+                  <p className="text-sm"><span className="font-medium">Usuario:</span> <code className="bg-white px-2 py-1 rounded">admin</code></p>
+                  <p className="text-sm"><span className="font-medium">Contraseña:</span> <code className="bg-white px-2 py-1 rounded">AdminPro123!</code></p>
+                </div>
+                
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                  <h4 className="font-bold text-green-800 mb-2">👤 Vendedor 1</h4>
+                  <p className="text-sm"><span className="font-medium">Usuario:</span> <code className="bg-white px-2 py-1 rounded">vendedor1</code></p>
+                  <p className="text-sm"><span className="font-medium">Contraseña:</span> <code className="bg-white px-2 py-1 rounded">Vendedor123!</code></p>
+                  <p className="text-xs text-green-700 mt-1">Comisión: 10%</p>
+                </div>
+                
+                <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+                  <h4 className="font-bold text-purple-800 mb-2">👤 Vendedor 2</h4>
+                  <p className="text-sm"><span className="font-medium">Usuario:</span> <code className="bg-white px-2 py-1 rounded">vendedor2</code></p>
+                  <p className="text-sm"><span className="font-medium">Contraseña:</span> <code className="bg-white px-2 py-1 rounded">Vendedor456!</code></p>
+                  <p className="text-xs text-purple-700 mt-1">Comisión: 15%</p>
+                </div>
+              </div>
+              
+              <div className="mt-6 pt-4 border-t">
+                <h4 className="font-semibold text-gray-700 mb-2">ℹ️ Información</h4>
+                <p className="text-xs text-gray-600">
+                  Esta es una versión de demostración. Los datos se reinician al recargar la página.
+                  Para una implementación real, se requiere backend con base de datos.
+                </p>
+              </div>
             </div>
-            
-            <button
-              onClick={() => handleLogin(username, password)}
-              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-            >
-              Iniciar Sesión ✨
-            </button>
           </div>
         </div>
       </div>
     );
   };
+
+  // Resto de los componentes (AdminDashboard, VendorDashboard, etc.) permanecen igual
+  // ... [mantén todo el código existente desde AdminDashboard hasta el final]
 
   // Admin Dashboard
   const AdminDashboard = () => {
@@ -201,17 +299,23 @@ const App = () => {
 
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Gestión de Loterías</h3>
-            <div className="space-y-2">
-              {lotteries.map(lottery => (
+            <div className="space-y-2 max-h-96 overflow-y-auto">
+              {lotteries.slice(0, 10).map(lottery => (
                 <div key={lottery.id} className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center space-x-3">
                     <div className={`w-3 h-3 rounded-full ${lottery.active ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                    <span className="font-medium">{lottery.name}</span>
-                    <span className="text-sm text-gray-500">{lottery.time}</span>
+                    <div>
+                      <span className="font-medium text-sm">{lottery.name}</span>
+                      <div className="flex items-center text-xs text-gray-500 mt-1">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {lottery.time} • {lottery.days}
+                      </div>
+                    </div>
                   </div>
                   {lottery.closed && <Lock className="w-4 h-4 text-red-500" />}
                 </div>
               ))}
+              <p className="text-xs text-gray-500 mt-2">Mostrando {lotteries.length} loterías disponibles</p>
             </div>
           </div>
         </div>
@@ -337,11 +441,11 @@ const App = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Seleccionar Loterías</label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-64 overflow-y-auto p-2 border rounded-lg">
               {lotteries
                 .filter(lottery => lottery.active && !lottery.closed)
                 .map(lottery => (
-                  <label key={lottery.id} className="flex items-center space-x-3 p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                  <label key={lottery.id} className="flex items-center space-x-3 p-2 cursor-pointer hover:bg-gray-50 rounded">
                     <input
                       type="checkbox"
                       checked={betForm.selectedLotteries.includes(lottery.id)}
@@ -349,10 +453,10 @@ const App = () => {
                       className="w-4 h-4 text-yellow-500 rounded focus:ring-yellow-500"
                     />
                     <div className="flex-1">
-                      <span className="font-medium">{lottery.name}</span>
-                      <div className="flex items-center text-sm text-gray-500">
+                      <span className="font-medium text-sm">{lottery.name}</span>
+                      <div className="flex items-center text-xs text-gray-500">
                         <Clock className="w-3 h-3 mr-1" />
-                        {lottery.time}
+                        {lottery.time} • {lottery.days}
                       </div>
                     </div>
                   </label>
